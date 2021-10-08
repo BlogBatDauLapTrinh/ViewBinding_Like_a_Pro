@@ -5,22 +5,19 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.batdaulaptrinh.viewbindinglikeapro.base.BaseFragment
 import com.batdaulaptrinh.viewbindinglikeapro.databinding.FragmentInflateBinding
 
-class InflateFragment : Fragment(R.layout.fragment_inflate) {
-    private var _binding:FragmentInflateBinding? = null
-    private val binding get() = _binding!!
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        _binding = FragmentInflateBinding.inflate(inflater,container,false)
-        binding.inflateFragmentTxt.text = "inflate fragment successfully"
-        return binding.root
-    }
+class InflateFragment : BaseFragment<FragmentInflateBinding>() {
 
-    override fun onDestroy() {
-        _binding = null
-        super.onDestroy()
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        binding.inflateFragmentTxt.text = "Inflate fragment successfully"
     }
+    override fun createViewBinding(
+        inflater: LayoutInflater,
+        container: ViewGroup?
+    ): FragmentInflateBinding = FragmentInflateBinding.inflate(inflater,container,false)
+
+
 }
